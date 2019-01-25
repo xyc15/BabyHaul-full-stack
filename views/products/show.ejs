@@ -1,0 +1,76 @@
+<% include ../partials/header %>
+  <!-- <script>
+    var prodcomment = <%= product.comments%>
+    console.log(prodcomment);
+  </script> -->
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-9">
+        <div class="card">
+          <img src="<%= product.image%>" class="card-img-top" alt="<%= product.name%>">
+          <div class="card-body">
+            <div class="clearfix">
+              <h5 class="card-title float-left"><%= product.name%></h5>
+              <p class="float-right">$<%= product.price%></p>
+            </div>
+            <p><em>Submitted By <strong><%= product.author.username%></strong>, <%= moment(product.date).fromNow()%></em></p>
+            <p class="card-text"><%= product.description%></p>
+            <%if(currentUser && currentUser._id.equals(product.author.id)) {%>
+              <div class="d-flex">
+                <a class="bg-warning rounded text-dark mr-1 px-2" href="/products/<%= product._id%>/edit">Edit</a>
+                <form action="/products/<%= product._id%>?_method=DELETE" method="POST">
+                    <button class="bg-danger text-white rounded">Delete</button>
+                </form>
+              </div>
+            <%}%>
+          </div>
+      </div>
+
+      <div class="card my-4">
+        <div class="card-body">
+          <div class="card-title clearfix">
+            <h3 class="float-left"><strong>Comments</Strong> <i class="fas fa-comment"></i> </h3>
+            <button class="btn btn-success float-right" name="button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fas fa-plus"></i> Add New Comment
+            </button>
+          </div>
+          <div class="collapse card px-3 pt-3 border-0" id="collapseExample">
+            <form class="float-right" action="/products/<%= product._id%>/comments" method="post">
+              <textarea class="d-block w-100 mb-2" rows="5" cols="40" name="comment[text]" placeholder="Writing a new comment..."></textarea>
+              <button class="btn btn-success btn-sm">Comment <i class="far fa-comment-alt"></i> </button>
+            </form>
+          </div>
+
+          <hr>
+          <%product.comments.forEach((comment) => { %>
+            <div class="d-flex justify-content-between flex-column flex-lg-row mb-2 mb-lg-0">
+              <div class="mr-3 mr-lg-0">
+                <p class="mb-0">
+                   <%if(currentUser && currentUser._id.equals(comment.author.id)){%>
+                      <i class="fas fa-user text-info"></i>
+                    <%} else {%>
+                      <i class="fas fa-user"></i>
+                  <%  }%>
+                  <strong><%= comment.author.username %></strong>
+                </p>
+                <p><%= comment.text %></p>
+              </div>
+              <div>
+                <p class="mb-1"><em><%= moment(comment.createDate).fromNow() %></em></p>
+                <%if(currentUser && currentUser._id.equals(comment.author.id)) {%>
+                  <div class="d-flex">
+                    <a class="bg-warning rounded text-dark mr-1 px-2" href="/products/<%= product._id%>/comments/<%= comment._id%>/edit">Edit</a>
+                    <form action="/products/<%= product._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                      <button class="bg-danger text-white rounded">Delete</button>
+                    </form>
+                  </div>
+                <%}%>
+              </div>
+            </div>
+          <% })%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% include ../partials/footer %>

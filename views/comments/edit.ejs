@@ -1,0 +1,15 @@
+<% include ../partials/header %>
+<div class="container text-center mt-4 mb-2">
+  <h1>Edit Comment</h1>
+  <div class="row justify-content-center">
+    <div class="col-8 col-sm-4">
+      <form action="/products/<%= product._id%>/comments/<%= comment._id%>?_method=PUT" method="POST">
+        <div class="form-group">
+          <textarea class="form-control" name="comment[text]" rows="4" cols="40"><%= comment.text%></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>
