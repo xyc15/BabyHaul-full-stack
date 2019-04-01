@@ -4,8 +4,8 @@
   "description": "a list of popular baby products",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon ./src/start.js",
-    "start": "nodemon ./src/app.js"
+    "test": "node ./src/start.js",
+    "start": "node ./src/app.js"
   },
   "author": "Cathy",
   "license": "ISC",
