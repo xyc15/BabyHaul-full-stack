@@ -2,7 +2,7 @@
   "name": "babyhaul",
   "version": "1.0.0",
   "description": "a list of popular baby products",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
     "test": "node ./src/start.js",
     "start": "node ./src/app.js"
