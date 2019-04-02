@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({mergeParams: true});
-const locus = require('locus');
+//const locus = require('locus');
 const Product = require("../models/product");
 const Comment = require("../models/comment");
 const middleware = require("../middleware/middleware");

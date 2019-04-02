@@ -1,7 +1,8 @@
+
 const express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
-const locus = require("locus");
+//const locus = require("locus");
 const Product = require("../models/product");
 const middleware = require("../middleware/middleware");
 
