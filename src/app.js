@@ -18,7 +18,7 @@ const commentRoutes = require('./routes/comments');
 require('dotenv').config();//get environment variables
 //mongoose.connect(process.env.DATABASEURL, {useFindAndModify: false, );
 mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});
-console.log("process.env.DATABASEURL is: ", process.env.DATABASEURL);
+//console.log("process.env.DATABASEURL is: ", process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
@@ -27,14 +27,13 @@ app.set('view engine', 'ejs');
 // There are two underscres in front of dirname
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
-
+app.use(flash());
 //passport configuration
 app.use(require("express-session")({
   secret: "James is a wonderful baby",
   resave: false,
   saveUninitialized: false
 }));
-app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -58,6 +57,6 @@ app.use('/products', productRoutes);
 app.use('/products/:id/comments', commentRoutes);
 //seedDB();
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, process.env.IP, () => {
   console.log('server started!');
 });
