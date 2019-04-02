@@ -17,7 +17,7 @@ const commentRoutes = require('./routes/comments');
 
 require('dotenv').config();//get environment variables
 //mongoose.connect(process.env.DATABASEURL, {useFindAndModify: false, useNewUrlParser: true});
-mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});
+mongoose.connect(process.env.DATABASEURL);
 console.log("process.env.DATABASEURL is: ", process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
