@@ -43,7 +43,7 @@
 
           <hr>
           <%product.comments.forEach((comment) => { %>
-            <div class="d-flex justify-content-between flex-column flex-lg-row mb-2 mb-lg-0">
+            <div class="comment d-flex justify-content-between flex-column flex-lg-row mb-2 mb-lg-0">
               <div class="mr-3 mr-lg-0">
                 <p class="mb-0">
                    <%if(currentUser && currentUser._id.equals(comment.author.id)){%>
