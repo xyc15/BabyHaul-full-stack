@@ -57,6 +57,10 @@ app.use('/products', productRoutes);
 app.use('/products/:id/comments', commentRoutes);
 //seedDB();
 
+app.get('*', (req, res) => { //if the requested page is not in the public folder, give them back index.html file
+  res.redirect("/");
+});
+
 app.listen(process.env.PORT, process.env.IP, () => {
   console.log('server started!');
 });
